@@ -1,5 +1,5 @@
 <h4>Action Name</h4>
-<mat-form-field appearance="fill">
+<mat-form-field appearance="outline">
   <mat-label>Action</mat-label>
   <mat-select #action>
     <mat-option *ngFor="let action of actions" [value]="action.value">
@@ -8,7 +8,7 @@
   </mat-select>
 </mat-form-field>
 
-<mat-form-field appearance="fill" *ngIf="action.value === 'job'">
+<mat-form-field appearance="outline" *ngIf="action.value === 'job'">
   <mat-label>Primary Skill</mat-label>
   <mat-select>
     <mat-option *ngFor="let job of skills" [value]="job.value">
@@ -17,7 +17,7 @@
   </mat-select>
 </mat-form-field>
 
-<mat-form-field appearance="fill" *ngIf="action.value === 'job'">
+<mat-form-field appearance="outline" *ngIf="action.value === 'job'">
   <mat-label>Secondary Skill</mat-label>
   <mat-select multiple>
     <mat-option *ngFor="let job of skills" [value]="job.value">
