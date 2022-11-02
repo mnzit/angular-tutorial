@@ -11,6 +11,11 @@ interface Skill {
   viewValue: string;
 }
 
+interface Team {
+  value: number;
+  viewValue: string;
+}
+
 
 @Component({
   selector: 'app-resources-bulk-update',
@@ -22,8 +27,7 @@ export class ResourcesBulkUpdateComponent implements OnInit {
   formGroup!: FormGroup;
 
   actions: Action[] = [
-    {value: 'job', viewValue: 'Update Skill'},
-    {value: 'address', viewValue: 'Update Address'},
+    {value: 'skill', viewValue: 'Update Skill'},
     {value: 'team', viewValue: 'Update Team'},
   ];
 
@@ -33,6 +37,12 @@ export class ResourcesBulkUpdateComponent implements OnInit {
     {value: 333, viewValue: 'React'},
   ];
 
+  teams: Team[] = [
+    {value: 111, viewValue: 'BOE'},
+    {value: 222, viewValue: 'BOO'},
+    {value: 333, viewValue: 'BEE'},
+  ];
+
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
       actionName: ["", [Validators.required]],
@@ -40,13 +50,22 @@ export class ResourcesBulkUpdateComponent implements OnInit {
     })
 
     this.formGroup.controls['actionName'].valueChanges.subscribe((changes) => {
-      this.formGroup.controls['actionData'] = this.formBuilder.group({});
+
       const actionData: FormGroup = this.formGroup.get('actionData') as FormGroup;
 
+      // remove existing controls
+      actionData.removeControl("primarySkill")
+      actionData.removeControl("secondarySkill")
+      actionData.removeControl("teamName")
+
       switch (changes) {
-        case "job":
+        case "skill":
           actionData.addControl('primarySkill', new FormControl('', Validators.required));
           actionData.addControl('secondarySkill', new FormControl('', Validators.required));
+          break;
+
+        case "team":
+          actionData.addControl('teamName', new FormControl('', Validators.required));
           break;
       }
     })
