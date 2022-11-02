@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <span>TUTORIAL APP</span>
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="home">Home</button>
+    <button mat-menu-item routerLink="profile">Profile</button>
+  </mat-menu>
+  <span class="example-spacer"></span>
+  <span #firstname>Pramod</span>
+  <img #avatar class="nav-profile-avatar" src="https://i.pravatar.cc/150?img=4">
+</mat-toolbar>

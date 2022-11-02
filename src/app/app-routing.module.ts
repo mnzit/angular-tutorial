@@ -1,22 +1,32 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router'
-import {TestOneComponent} from "./components/test-one/test-one.component";
-import {TestTwoComponent} from "./components/test-two/test-two.component";
+import {ContainerComponent} from "./components/container/container.component";
+import {HomeComponent} from "./components/home/home.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {ResourcesBulkUpdateComponent} from "./resources-bulk-update/resources-bulk-update.component";
 
 const routes: Routes = [
+
   {
-    path: "test.one",
-    component: TestOneComponent
-  },
-  {
-    path: "test.two",
-    component: TestTwoComponent
-  },
-  {
-    path: "home",
-    loadChildren: () => import('./home/home.module').then(module => module.HomeModule)
+    path: "",
+    component: ContainerComponent,
+    children: [
+      {
+        path: "home",
+        component: HomeComponent
+      },
+      {
+        path: "profile",
+        component: ProfileComponent
+      },
+      {
+        path: "resources",
+        component: ResourcesBulkUpdateComponent
+      }
+    ]
   }
+
 ];
 
 @NgModule({
