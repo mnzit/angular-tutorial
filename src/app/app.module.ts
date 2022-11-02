@@ -19,6 +19,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
 import { ResourcesBulkUpdateComponent } from './resources-bulk-update/resources-bulk-update.component';
 import {MatOptionModule} from "@angular/material/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import {MatOptionModule} from "@angular/material/core";
     ResourcesBulkUpdateComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     RouterOutlet,
     AppRoutingModule,
