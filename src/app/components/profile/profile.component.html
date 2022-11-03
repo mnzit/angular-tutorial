@@ -2,16 +2,16 @@
 
 <div class="row">
   <div class="col-4">
-    <mat-card style="text-align: center !important;">
+    <div class="image-container">
       <img #avatar class="profile-image" src="https://i.pravatar.cc/150?img=4">
-    </mat-card>
+    </div>
   </div>
   <div class="col-8">
     <div class="row">
       <div class="col-6">
         <mat-form-field appearance="fill">
           <mat-label>First name</mat-label>
-          <input (change)="firstNameChange($event)" matInput>
+          <input (input)="firstNameChange($event)" matInput>
         </mat-form-field>
       </div>
       <div class="col-6">
