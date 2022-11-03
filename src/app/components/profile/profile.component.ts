@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../../services/user.service";
 
 @Component({
@@ -12,12 +12,17 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
+
+  @ViewChild('avatar', {read: ElementRef})
+  public avatar!: ElementRef;
+
   ngOnInit(): void {
 
   }
 
   selectFile(event: any) {
     this.selectedFiles = event.target.files;
+    this.avatar.nativeElement.src = URL.createObjectURL(this.selectedFiles[0]);
     this.userService.profileAvatarChangeEvent.next(this.selectedFiles);
   }
 

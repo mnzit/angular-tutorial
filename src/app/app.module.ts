@@ -17,7 +17,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
-import { ResourcesBulkUpdateComponent } from './resources-bulk-update/resources-bulk-update.component';
+import { ResourcesBulkUpdateComponent } from './components/resources-bulk-update/resources-bulk-update.component';
 import {MatOptionModule} from "@angular/material/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
@@ -44,7 +44,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     RouterModule,
     MatButtonModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

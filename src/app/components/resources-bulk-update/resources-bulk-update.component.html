@@ -1,0 +1,69 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="row">
+
+  <div class="col-12">
+    <h4>Action Name</h4>
+    <mat-form-field appearance="outline">
+      <mat-label>Action</mat-label>
+      <mat-select #action formControlName="actionName">
+        <mat-option *ngFor="let action of actions" [value]="action.value">
+          {{action.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ng-container formGroupName="actionData">
+
+    <ng-container *ngIf="action.value === 'skill'">
+
+      <div class="col-6">
+        <h4>Primary Skill</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>Primary Skill</mat-label>
+          <mat-select formControlName="primarySkill">
+            <mat-option *ngFor="let job of skills" [value]="job.value">
+              {{job.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <h4>Secondary Skill</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>Secondary Skill</mat-label>
+          <mat-select formControlName="secondarySkill" multiple>
+            <mat-option *ngFor="let job of skills" [value]="job.value">
+              {{job.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="action.value === 'team'">
+      <div class="col-6">
+        <h4>Team Name</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>Team Name</mat-label>
+          <mat-select formControlName="teamName">
+            <mat-option *ngFor="let team of teams" [value]="team.value">
+              {{team.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+  </ng-container>
+
+  <div class="col-12">
+    <button class="btn-bordered pe-5 ps-5 rounded-pill float-end" mat-stroked-button>
+      Bulk Update
+    </button>
+  </div>
+
+</form>
+
+

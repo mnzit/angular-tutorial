@@ -1,24 +1,41 @@
 <h1>Edit Profile</h1>
 
-<mat-form-field appearance="fill">
-  <mat-label>First name</mat-label>
-  <input (change)="firstNameChange($event)" matInput>
-</mat-form-field>
-
-<mat-form-field appearance="fill">
-  <mat-label>Last name</mat-label>
-  <input matInput>
-</mat-form-field>
-
-<mat-form-field class="columns">
-  <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles?.item(0)?.name}}</mat-label>
-  <ng-template #newFile>
-    <mat-label>Choose file</mat-label>
-  </ng-template>
-  <input matInput disabled>
-  <button mat-icon-button matSuffix (click)="fileInput.click()">
-    <mat-icon>attach_file</mat-icon>
-  </button>
-  <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
-</mat-form-field>
-<button mat-button color="primary">Update</button>
+<div class="row">
+  <div class="col-4">
+    <mat-card style="text-align: center !important;">
+      <img #avatar class="profile-image" src="https://i.pravatar.cc/150?img=4">
+    </mat-card>
+  </div>
+  <div class="col-8">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>First name</mat-label>
+          <input (change)="firstNameChange($event)" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Last name</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="columns">
+          <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles?.item(0)?.name}}</mat-label>
+          <ng-template #newFile>
+            <mat-label>Choose file</mat-label>
+          </ng-template>
+          <input matInput disabled>
+          <button mat-icon-button matSuffix (click)="fileInput.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <button mat-button color="primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 interface Action {
   value: string;
@@ -48,29 +48,34 @@ export class ResourcesBulkUpdateComponent implements OnInit {
       actionName: ["", [Validators.required]],
       actionData: this.formBuilder.group({})
     })
+    this.toggleActionData();
+  }
 
-    this.formGroup.controls['actionName'].valueChanges.subscribe((changes) => {
-
-      const actionData: FormGroup = this.formGroup.get('actionData') as FormGroup;
-
-      // remove existing controls
-      actionData.removeControl("primarySkill")
-      actionData.removeControl("secondarySkill")
-      actionData.removeControl("teamName")
+  toggleActionData(): void {
+    this.formGroup.get('actionName')?.valueChanges.subscribe((changes) => {
+      let actionDataFormGroup: FormGroup = this.getActionDataFormGroup();
 
       switch (changes) {
         case "skill":
-          actionData.addControl('primarySkill', new FormControl('', Validators.required));
-          actionData.addControl('secondarySkill', new FormControl('', Validators.required));
+          actionDataFormGroup.addControl('primarySkill', new FormControl('', Validators.required));
+          actionDataFormGroup.addControl('secondarySkill', new FormControl('', Validators.required));
           break;
 
         case "team":
-          actionData.addControl('teamName', new FormControl('', Validators.required));
+          actionDataFormGroup.addControl('teamName', new FormControl('', Validators.required));
           break;
       }
     })
   }
 
+  getActionDataFormGroup(): FormGroup {
+    // Clearing existing data
+    this.formGroup.removeControl("actionData");
+    // Adding new actionData
+    let actionDataFormGroup: FormGroup = this.formBuilder.group({});
+    this.formGroup.addControl("actionData", actionDataFormGroup)
+    return actionDataFormGroup;
+  }
 
   onSubmit() {
     console.log(this.formGroup.value);

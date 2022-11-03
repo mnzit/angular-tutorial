@@ -3,3 +3,10 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+
+}
